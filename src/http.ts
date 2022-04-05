@@ -1,6 +1,11 @@
 const apiBase = 'https://hacker-news.firebaseio.com/v0/';
 
-async function http(url: string): Promise<any> {
+interface t extends ArrayLike<number>{
+    id: number,
+    slice(start?: number, end?: number): Array<number>
+}
+
+async function http(url: string): Promise<t> {
     const response = await fetch(url);
 
     if (!response.ok) {

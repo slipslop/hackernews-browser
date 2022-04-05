@@ -3,7 +3,7 @@ import { Article } from "./Article";
 import { get } from "./http";
 
 export function ArticleListing() {
-    const [posts, setPosts] = useState([]);
+    const [posts, setPosts] = useState(Array<number>());
     const fetchData = () => {
         get().then(response => {
             return response;

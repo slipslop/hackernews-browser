@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { Article } from "./Article";
-import { get } from "./http";
+import { getTopStories } from "./http";
 
 export function ArticleListing() {
     const [posts, setPosts] = useState(Array<number>());
     const fetchData = () => {
-        get().then(response => {
+        getTopStories().then(response => {
             return response;
         })
         .then(data => {

@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
 import { getTopStories } from "./http";
 import { Link } from "react-router-dom";
+import './articlelisting.css';
 
 export function ArticleListing() {
     const [posts, setPosts] = useState<Array<number>>();
+    const [isLoading, setIsLoading] = useState<boolean>(true);
+
     const fetchData = () => {
         getTopStories().then(response => {
             return response;
@@ -18,11 +21,20 @@ export function ArticleListing() {
         fetchData()
     }, [])
 
+    if (isLoading && !posts) {
+        return (
+            <div className="wrapper">
+                <p>Still loading data...</p>
+            </div>
+        )
+    }
+
     return (
-        <div>
+        <div className="wrapper">
+                <h1>Top 20 items</h1>
             {
                 posts?.map((item, index) => (
-                    <div>
+                    <div className="link" key={index}>
                         <Link to={`/article/${item}`}>{item}</Link>
                     </div>
                 ))

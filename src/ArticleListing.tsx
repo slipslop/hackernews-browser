@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { Article } from "./Article";
-import { getTopStories } from "./http";
+import { ArticleLink } from "./ArticleLink";
+import { getTopStories, storyResponse } from "./http";
 
 export function ArticleListing() {
-    const [posts, setPosts] = useState(Array<number>());
+    const [posts, setPosts] = useState<storyResponse[]>();
     const fetchData = () => {
         getTopStories().then(response => {
             return response;
@@ -21,8 +21,8 @@ export function ArticleListing() {
     return (
         <div>
             {
-                posts.map((item, index) => (
-                    <Article key={index} id={item}/>
+                posts?.map((item, index) => (
+                    <ArticleLink key={index} id={item}/>
                 ))
             }
         </div>

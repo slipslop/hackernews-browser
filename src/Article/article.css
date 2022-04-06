@@ -1,0 +1,24 @@
+body {
+    text-align: center;
+}
+
+p.title {
+    font-size: 22px;
+}
+
+p.comment {
+    line-height: 1.4;
+}
+
+button.btn {
+    display: block;
+    margin: 20px auto;
+    background: #2be1ff;
+    border: none;
+    padding: 10px;
+    border-radius: 12px;
+}
+
+button.btn a {
+    text-decoration: none;
+}

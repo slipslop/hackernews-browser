@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
-import { useParams, useSearchParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { getStory } from "../http";
 import { storyResponse } from "../http";
 import { CommentArticle } from "./Types/CommentArticle";
 import { StroyArticle } from "./Types/StoryArticle";
+import "./article.css";
 
 export function Article(props: any) {
     let {id} = useParams();

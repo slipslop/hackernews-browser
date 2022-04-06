@@ -1,11 +1,18 @@
 const apiBase = 'https://hacker-news.firebaseio.com/v0/';
 
-interface TopStoryResponse extends ArrayLike<number>{
+export interface storyResponse extends ArrayLike<number>{
     id: number,
-    slice(start?: number, end?: number): Array<number>
+    descendants? :number,
+    by?: string,
+    score?: number,
+    time?: number,
+    title?: string,
+    type?: string,
+    url?: string,
+    slice(start?: number, end?: number): Array<storyResponse>
 }
 
-async function http(url: string): Promise<TopStoryResponse> {
+async function http(url: string): Promise<storyResponse> {
     const response = await fetch(url);
 
     if (!response.ok) {
@@ -17,6 +24,13 @@ async function http(url: string): Promise<TopStoryResponse> {
 
 export async function getTopStories() {
     const url = apiBase + 'topstories.json';
+    return await http(url).then((data) => {
+        return data;
+    });
+}
+
+export async function getStory(storyId: any) {
+    const url = apiBase + `item/${storyId}.json`;
     return await http(url).then((data) => {
         return data;
     });

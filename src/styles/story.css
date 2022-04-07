@@ -1,19 +1,22 @@
 body {
     text-align: center;
 }
+p {
+    color: #9CE37D;
+}
 
 p.title {
     font-size: 22px;
 }
 
-p.comment {
-    line-height: 1.4;
+a {
+    color: #9CE37D;
 }
 
 button.btn {
     display: block;
     margin: 20px auto;
-    background: #2be1ff;
+    background: #77867F;
     border: none;
     padding: 10px;
     border-radius: 12px;
@@ -21,4 +24,5 @@ button.btn {
 
 button.btn a {
     text-decoration: none;
+    color: white;
 }

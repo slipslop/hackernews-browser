@@ -1,7 +1,9 @@
 div.wrapper {
   text-align: center;
 }
-
+.wrapper h1 {
+  color: white;
+}
 .link {
   width: 50%;
   margin: 0 auto;
@@ -13,6 +15,7 @@ div.wrapper {
 
 .link a {
   text-decoration: none;
+  color: #9CE37D;
 }
 
 .subtitle {
@@ -21,6 +24,7 @@ div.wrapper {
   align-self: flex-start;
   margin: 5px 0;
   font-size: 12px;
+  color: #87B37A;
 }
 
 .item {

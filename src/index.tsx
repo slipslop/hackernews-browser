@@ -1,16 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Routes, Route, BrowserRouter } from "react-router-dom";
-import './index.css';
-import { ArticleListing } from './ArticleListing';
-import { Article } from './Article/Article';
+import './styles/index.css';
+import { StoryListing } from './StoryListing';
+import { Story } from './Story/Story';
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
         <Routes>
-          <Route path="/" element={<ArticleListing/>}></Route>
-          <Route path="/article/:id" element={<Article/>}></Route>
+          <Route path="/" element={<StoryListing/>}></Route>
+          <Route path="/story/:id" element={<Story/>}></Route>
         </Routes>
     </BrowserRouter>
   </React.StrictMode>,

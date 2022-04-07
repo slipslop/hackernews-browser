@@ -2,14 +2,14 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getStory } from "../http";
 import { storyResponse } from "../http";
-import { CommentArticle } from "./Types/CommentArticle";
-import { StroyArticle } from "./Types/StoryArticle";
-import "./article.css";
+import { Comment } from "./Types/Comment";
+import { Story as StoryStory } from "./Types/Story";
+import "../styles/story.css";
 
-export function Article(props: any) {
+export function Story(props: any) {
     let {id} = useParams();
 
-    const [article, setArticle] = useState<storyResponse>();
+    const [story, setStory] = useState<storyResponse>();
     const [isLoading, setIsLoading] = useState<boolean>(true);
 
     const fetchData = () => {
@@ -17,8 +17,7 @@ export function Article(props: any) {
             return response;
         })
         .then(data => {
-            console.log(data);
-            setArticle(data);
+            setStory(data);
             setIsLoading(false);
         });
     }
@@ -27,18 +26,18 @@ export function Article(props: any) {
         fetchData()
     }, [])
 
-    if (article && !isLoading) {
-        if (article.type === 'comment') {
-            return <CommentArticle article={article}/>
+    if (story && !isLoading) {
+        if (story.type === 'comment') {
+            return <Comment story={story}/>
         } else {
-            return <StroyArticle article={article} />
+            return <StoryStory story={story} />
         }
     }
     
-    if (!article && !isLoading) {
+    if (!story && !isLoading) {
         return (
             <>
-                <p>Article not found!</p>
+                <p>Story not found!</p>
             </>
         );
     }

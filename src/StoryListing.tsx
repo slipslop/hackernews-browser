@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { getTopStories } from "./http";
 import { Link } from "react-router-dom";
-import './articlelisting.css';
+import './styles/storylisting.css';
 
-export function ArticleListing() {
-    const [posts, setPosts] = useState<Array<number>>();
+export function StoryListing() {
+    const [stories, setStories] = useState<Array<number>>();
     const [isLoading, setIsLoading] = useState<boolean>(true);
 
     const fetchData = () => {
@@ -12,8 +12,8 @@ export function ArticleListing() {
             return response;
         })
         .then(data => {
-            console.log(data);
-            setPosts(data.slice(0, 20));
+            setStories(data.slice(0, 20));
+            setIsLoading(false);
         })
     }
     
@@ -21,21 +21,29 @@ export function ArticleListing() {
         fetchData()
     }, [])
 
-    if (isLoading && !posts) {
+    if (isLoading && !stories) {
         return (
             <div className="wrapper">
                 <p>Still loading data...</p>
             </div>
         )
     }
+    
+    if (!isLoading && !stories) {
+        return (
+            <div className="wrapper">
+                <p>Couldn't fetch stories</p>
+            </div>
+        )
+    }
 
     return (
         <div className="wrapper">
-                <h1>Top 20 items</h1>
+                <h1>Top 20 stories</h1>
             {
-                posts?.map((item, index) => (
+                stories?.map((item, index) => (
                     <div className="link" key={index}>
-                        <Link to={`/article/${item}`}>{item}</Link>
+                        <Link to={`/story/${item}`}>{item}</Link>
                     </div>
                 ))
             }

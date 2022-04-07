@@ -3,17 +3,26 @@ div.wrapper {
 }
 
 .link {
-  margin: 5px;
-  padding: 5px;
+  width: 50%;
+  margin: 0 auto;
+  padding: 20px;
   text-decoration: none;
   font-size: 18px;
+  text-align: left;
 }
 
 .link a {
   text-decoration: none;
 }
 
-.link a:hover {
-  transition: 0.3s;
-  font-size: 20px;
+.subtitle {
+  width: 100%;
+  display: flex;
+  align-self: flex-start;
+  margin: 5px 0;
+  font-size: 12px;
+}
+
+.item {
+  margin: 0 20px 0 0;
 }

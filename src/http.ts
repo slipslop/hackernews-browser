@@ -2,7 +2,7 @@ const apiBase = 'https://hacker-news.firebaseio.com/v0/';
 
 export interface storyResponse extends ArrayLike<number>{
     id: number,
-    descendants :number,
+    descendants: number,
     by: string,
     score: number,
     time: number,

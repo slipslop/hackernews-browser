@@ -30,7 +30,7 @@ export async function getTopStories() {
     });
 }
 
-export async function getStory(storyId: string|undefined) {
+export async function getStory(storyId: string|number|undefined) {
     if (storyId === undefined) {
         throw Error('Story id is undefined');
     }

@@ -1,9 +1,7 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { getStory } from "../http";
 import { storyResponse } from "../http";
-import { Comment } from "./Types/Comment";
-import { Story as StoryStory } from "./Types/Story";
 import "../styles/story.css";
 
 export function Story(props: any) {
@@ -12,14 +10,12 @@ export function Story(props: any) {
     const [story, setStory] = useState<storyResponse>();
     const [isLoading, setIsLoading] = useState<boolean>(true);
 
-    const fetchData = () => {
-        getStory(id).then(response => {
-            return response;
-        })
-        .then(data => {
-            setStory(data);
-            setIsLoading(false);
-        });
+    const fetchData = async () => {
+        await getStory(id)
+            .then(res => {
+                setStory(res);
+                setIsLoading(false);
+            });
     }
 
     useEffect(() => {
@@ -27,11 +23,20 @@ export function Story(props: any) {
     }, [])
 
     if (story && !isLoading) {
-        if (story.type === 'comment') {
-            return <Comment story={story}/>
-        } else {
-            return <StoryStory story={story} />
-        }
+        let date = new Date(story.time * 1000);
+        return (
+            <>
+                <p className="title">{story.title}</p>
+                <p>Linked by: {story.by}</p>
+                <p>id: {story.id}</p>
+                <p>points: {story.score}</p>
+                <p>date: {date.toLocaleString('fi-FI')}</p>
+                <a href={story.url} target="_blank" rel="noreferrer">Link to story</a>
+                <button className="btn">
+                    <Link to={`/`}>Home</Link>
+                </button>
+            </>
+        );
     }
     
     if (!story && !isLoading) {
@@ -44,7 +49,7 @@ export function Story(props: any) {
 
     return (
         <>
-            <p>Loading data...</p>
+            <p>Still loading data...</p>
         </>
     );
 }

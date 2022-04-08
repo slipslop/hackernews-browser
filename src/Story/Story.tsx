@@ -1,26 +1,24 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { getStory } from "../http";
-import { storyResponse } from "../http";
+import { StoryResponse } from "../http";
 import "../styles/story.css";
 
 export function Story() {
     let {id} = useParams();
 
-    const [story, setStory] = useState<storyResponse>();
+    const [story, setStory] = useState<StoryResponse>();
     const [isLoading, setIsLoading] = useState<boolean>(true);
 
     const fetchData = async () => {
-        await getStory(id)
-            .then(res => {
-                setStory(res);
-                setIsLoading(false);
-            });
+        const story = await getStory(id);
+        setStory(story);
+        setIsLoading(false);
     }
 
     useEffect(() => {
         fetchData()
-    }, [])
+    }, []);
 
     if (story && !isLoading) {
         let date = new Date(story.time * 1000);
@@ -38,18 +36,8 @@ export function Story() {
             </>
         );
     }
-    
-    if (!story && !isLoading) {
-        return (
-            <>
-                <p>Story not found!</p>
-            </>
-        );
-    }
 
-    return (
-        <>
-            <p>Still loading data...</p>
-        </>
-    );
+    return !story && !isLoading
+        ? <p>Story not found!</p>
+        : <p>Still loading data...</p>;
 }

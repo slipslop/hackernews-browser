@@ -9,8 +9,8 @@ ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
         <Routes>
-          <Route path="/" element={<StoryListing/>}></Route>
           <Route path="/story/:id" element={<Story/>}></Route>
+          <Route path="/" element={<StoryListing/>}></Route>
         </Routes>
     </BrowserRouter>
   </React.StrictMode>,

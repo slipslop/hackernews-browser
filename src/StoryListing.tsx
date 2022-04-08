@@ -1,28 +1,16 @@
 import { useEffect, useState } from "react";
-import { getTopStories, getStory, storyResponse } from "./http";
+import { getTopStories, getStory, getStories, StoryResponse} from "./http";
 import { Link } from "react-router-dom";
 import './styles/storylisting.css';
 
 export function StoryListing() {
-    const [stories, setStories] = useState<Array<storyResponse>>();
+    const [stories, setStories] = useState<Array<StoryResponse>>();
     const [isLoading, setIsLoading] = useState<boolean>(true);
 
     const fetchData = async () => {
-        await getTopStories()
-            .then(res => {
-                return res.slice(0,20);
-            }).then(res => {
-                let promises: Array<Promise<storyResponse>> = [];
-                res.map((id) => {
-                    let promise = getStory(id);
-                    promises.push(promise);
-                });
-                Promise.all(promises)
-                    .then(res => {
-                        setStories(res);
-                        setIsLoading(false);
-                    });
-            });
+        const stories = await getStories();     
+        setStories(stories);
+        setIsLoading(false);
     };
     
     useEffect(() => {

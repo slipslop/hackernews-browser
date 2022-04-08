@@ -23,7 +23,6 @@ export function StoryListing() {
                         setIsLoading(false);
                     });
             });
-        
     };
     
     useEffect(() => {

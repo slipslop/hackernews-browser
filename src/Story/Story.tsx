@@ -4,7 +4,7 @@ import { getStory } from "../http";
 import { storyResponse } from "../http";
 import "../styles/story.css";
 
-export function Story(props: any) {
+export function Story() {
     let {id} = useParams();
 
     const [story, setStory] = useState<storyResponse>();

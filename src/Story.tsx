@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams, Link, Router, BrowserRouter } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { getStory } from "./http";
 import { StoryResponse } from "./http";
 import "./styles/story.css";

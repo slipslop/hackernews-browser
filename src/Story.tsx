@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import { getStory } from "../http";
-import { StoryResponse } from "../http";
-import "../styles/story.css";
+import { getStory } from "./http";
+import { StoryResponse } from "./http";
+import "./styles/story.css";
 
 export function Story() {
     let {id} = useParams();

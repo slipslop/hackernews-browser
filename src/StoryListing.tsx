@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getTopStories, getStory, getStories, StoryResponse} from "./http";
+import { getStories, StoryResponse} from "./http";
 import { Link } from "react-router-dom";
 import './styles/storylisting.css';
 

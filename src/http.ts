@@ -25,9 +25,7 @@ async function http<T>(url: string): Promise<T> {
 
 export async function getTopStories() {
     const url = apiBase + 'topstories.json';
-    return await http<Array<number>>(url).then((data) => {
-        return data.slice(0,20);
-    });
+    return await http<Array<number>>(url)
 }
 
 export async function getStory(storyId: string|number|undefined) {
@@ -36,13 +34,12 @@ export async function getStory(storyId: string|number|undefined) {
     }
 
     const url = apiBase + `item/${storyId}.json`;
-    return await http<StoryResponse>(url).then((data) => {
-        return data;
-    });
+    return await http<StoryResponse>(url);
 }
 
-export async function getStories() {
+export async function getStories(amount: number = 20) {
     const topStories = await getTopStories();
-    const promises: Array<Promise<StoryResponse>> = topStories.map(getStory);
+    const t = topStories.slice(0, amount);
+    const promises: Array<Promise<StoryResponse>> = t.map(getStory);
     return await Promise.all(promises);
 }

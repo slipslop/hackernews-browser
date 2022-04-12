@@ -1,6 +1,12 @@
 body {
     text-align: center;
 }
+
+div.story-wrapper {
+    width: 50%;
+    margin: 0 auto;
+}
+
 p {
     color: #9CE37D;
 }
@@ -16,10 +22,13 @@ a {
 button.btn {
     display: block;
     margin: 20px auto;
+      margin-left: auto;
     background: #77867F;
     border: none;
-    padding: 10px;
+    padding: 16px;
     border-radius: 12px;
+    margin-left: 0;
+    cursor: pointer;
 }
 
 button.btn a {

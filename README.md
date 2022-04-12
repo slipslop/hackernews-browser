@@ -1,3 +1,7 @@
+## Hackernews top stories browser
+
+Shows 20 top stories.
+
 ## Available Scripts
 
 To run the project:

@@ -17,24 +17,17 @@ export function StoryListing() {
         fetchData();
     }, []);
 
-    if (isLoading && !stories) {
+    const loading = () => {
         return (
             <div className="wrapper">
                 <p>Still loading data...</p>
             </div>
         )
-    }
-    
-    if (!isLoading && !stories) {
+    };
+
+    const view = () => {
         return (
             <div className="wrapper">
-                <p>Couldn't fetch stories</p>
-            </div>
-        )
-    }
-
-    return (
-        <div className="wrapper">
                 <h1>Top 20 stories</h1>
             {
                 stories?.map((item, index) => (
@@ -48,5 +41,9 @@ export function StoryListing() {
                 ))
             }
         </div>
-    )
-}
+        )
+    };
+
+    return isLoading && !stories ? loading() : view();
+
+};
